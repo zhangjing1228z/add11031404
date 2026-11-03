@@ -1,0 +1,270 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* 背景渐变 - 从深蓝到深红 */
+.background-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #0a0e2a 0%,
+    #1a1040 20%,
+    #2d1040 40%,
+    #3d1520 60%,
+    #1a0808 80%,
+    #0a0404 100%
+  );
+  z-index: 0;
+}
+
+/* 星空效果 */
+.stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 200px 60px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 250px 20px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 300px 50px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 350px 90px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 400px 35px, rgba(255, 255, 255, 0.9), transparent);
+  background-size: 450px 100px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* 雪花画布 */
+.snow-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* 火山画布 */
+.volcano-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* 熔岩粒子容器 */
+.lava-particles-container {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lava-particles-container .ember {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* 地面 */
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15%;
+  background: linear-gradient(
+    to bottom,
+    #1a0808 0%,
+    #0d0404 50%,
+    #050202 100%
+  );
+  z-index: 3;
+}
+
+/* 雪地 */
+.snow-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8%;
+  background: linear-gradient(
+    to bottom,
+    rgba(200, 220, 255, 0.1) 0%,
+    rgba(220, 235, 255, 0.2) 50%,
+    rgba(240, 248, 255, 0.15) 100%
+  );
+  z-index: 4;
+  border-top: 1px solid rgba(200, 220, 255, 0.2);
+}
+
+/* 标题容器 */
+.title-container {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.title-container.visible {
+  opacity: 1;
+}
+
+.main-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.fire-text {
+  background: linear-gradient(
+    to bottom,
+    #FFD700 0%,
+    #FF8C00 30%,
+    #FF4500 60%,
+    #FF0000 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(255, 100, 0, 0.8))
+    drop-shadow(0 0 20px rgba(255, 50, 0, 0.5));
+  animation: fireGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes fireGlow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 100, 0, 0.8))
+      drop-shadow(0 0 20px rgba(255, 50, 0, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 0 15px rgba(255, 150, 0, 1))
+      drop-shadow(0 0 30px rgba(255, 80, 0, 0.7));
+  }
+}
+
+.ice-text {
+  background: linear-gradient(
+    to bottom,
+    #E8F4FD 0%,
+    #B8E2F8 30%,
+    #87CEEB 60%,
+    #4FC3F7 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8))
+    drop-shadow(0 0 20px rgba(50, 150, 255, 0.5));
+  animation: iceGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes iceGlow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8))
+      drop-shadow(0 0 20px rgba(50, 150, 255, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 0 15px rgba(150, 220, 255, 1))
+      drop-shadow(0 0 30px rgba(80, 180, 255, 0.7));
+  }
+}
+
+.subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
+  color: rgba(200, 210, 230, 0.8);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  animation: subtitlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtitlePulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* 装饰元素 */
+.decoration-left,
+.decoration-right {
+  position: absolute;
+  z-index: 15;
+  animation: float 6s ease-in-out infinite;
+}
+
+.decoration-left {
+  top: 30%;
+  left: 5%;
+}
+
+.decoration-right {
+  top: 25%;
+  right: 5%;
+  animation-delay: -3s;
+}
+
+.snow-flake-deco {
+  font-size: 2rem;
+  animation: spin 8s linear infinite;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 10px rgba(150, 200, 255, 0.8));
+}
+
+.fire-deco {
+  font-size: 2rem;
+  animation: flicker 0.5s ease-in-out infinite alternate;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 10px rgba(255, 100, 0, 0.8));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes flicker {
+  0% { transform: scale(1) rotate(-5deg); }
+  100% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .decoration-left,
+  .decoration-right {
+    display: none;
+  }
+  
+  .title-container {
+    top: 8%;
+  }
+}
